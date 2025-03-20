@@ -129,7 +129,7 @@ class MiniGridHack(MiniHackNavigation):
         # self.minigrid_env.seed(core)
         return super().seed(core, disp, reseed)
 
-    def reset(self, wizkit_items=None):
+    def reset(self, wizkit_items=None, **kwargs):
         kwargs = dict()
         des_file = self.get_env_desc()
         self.update(des_file)
