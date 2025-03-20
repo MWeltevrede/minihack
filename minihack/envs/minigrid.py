@@ -34,10 +34,10 @@ class MiniGridHack(MiniHackNavigation):
             self.wall = "L"
         else:
             self.wall = "|"
-
-        if self._level_seeds is not None:
-            seed = random.choice(self._level_seeds)
-            self.seed(seed, seed, reseed=False)
+        
+        seed = 0
+        if 'seeds' in kwargs:
+            seed = random.choice(kwargs['seeds'])
         des_file = self.get_env_desc(seed)
         super().__init__(*args, des_file=des_file, **kwargs)
 
