@@ -14,7 +14,7 @@ class MiniGridHack(MiniHackNavigation):
     def __init__(self, *args, **kwargs):
         # Only ask users to install gym-minigrid if they actually need it
         try:
-            import gym_minigrid  # noqa: F401
+            import minigrid  # noqa: F401
         except ModuleNotFoundError:
             raise ModuleNotFoundError(
                 "To use MiniGrid-based environments, please install"
