@@ -81,8 +81,8 @@ class MiniGridHack(MiniHackNavigation):
 
         return env_map, start_pos, goal_pos, door_pos
 
-    def get_env_desc(self):
-        self.minigrid_env.reset()
+    def get_env_desc(self, seed):
+        self.minigrid_env.reset(seed=seed)
         env = self.minigrid_env
         while not hasattr(env, 'grid'):
             env = env.env
@@ -131,13 +131,13 @@ class MiniGridHack(MiniHackNavigation):
         return super().seed(core, disp, reseed)
 
     def reset(self, wizkit_items=None, **kwargs):
-        des_file = self.get_env_desc()
-        self.update(des_file)
         if self._level_seeds is not None:
             seed = random.choice(self._level_seeds)
             self.seed(seed, seed, reseed=False)
             kwargs['seed'] = seed
             kwargs['sample_seed'] = False
+        des_file = self.get_env_desc(seed)
+        self.update(des_file)
         return super().reset(**kwargs)
 
 
