@@ -124,13 +124,19 @@ class MiniGridHack(MiniHackNavigation):
         Returns:
             [tuple] The seeds supplied, in the form (core, disp, reseed).
         """
-        self.minigrid_env.seed(core)
+        # self.minigrid_env.seed(core)
         return super().seed(core, disp, reseed)
 
     def reset(self, wizkit_items=None):
+        kwargs = dict()
         des_file = self.get_env_desc()
         self.update(des_file)
-        return super().reset(wizkit_items=wizkit_items)
+        if self._level_seeds is not None:
+            seed = random.choice(self._level_seeds)
+            self.seed(seed, seed, reseed=False)
+            kwargs['seed'] = seed
+            kwargs['sample_seed'] = False
+        return super().reset(wizkit_items=wizkit_items, **kwargs)
 
 
 class MiniHackMultiRoomN2(MiniGridHack):
