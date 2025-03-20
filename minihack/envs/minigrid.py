@@ -138,7 +138,7 @@ class MiniGridHack(MiniHackNavigation):
             self.seed(seed, seed, reseed=False)
             kwargs['seed'] = seed
             kwargs['sample_seed'] = False
-        return super().reset(wizkit_items=wizkit_items, **kwargs)
+        return super().reset(**kwargs)
 
 
 class MiniHackMultiRoomN2(MiniGridHack):
