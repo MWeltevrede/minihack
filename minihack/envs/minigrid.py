@@ -35,7 +35,10 @@ class MiniGridHack(MiniHackNavigation):
         else:
             self.wall = "|"
 
-        des_file = self.get_env_desc()
+        if self._level_seeds is not None:
+            seed = random.choice(self._level_seeds)
+            self.seed(seed, seed, reseed=False)
+        des_file = self.get_env_desc(seed)
         super().__init__(*args, des_file=des_file, **kwargs)
 
     def get_env_map(self, env):
