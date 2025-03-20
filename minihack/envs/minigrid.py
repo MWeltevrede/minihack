@@ -83,6 +83,8 @@ class MiniGridHack(MiniHackNavigation):
     def get_env_desc(self):
         self.minigrid_env.reset()
         env = self.minigrid_env
+        while not hasattr(env, 'grid'):
+            env = env.env
 
         map, start_pos, goal_pos, door_pos = self.get_env_map(env)
 
