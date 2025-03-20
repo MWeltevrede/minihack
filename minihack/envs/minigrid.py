@@ -3,6 +3,7 @@ from minihack import MiniHackNavigation, LevelGenerator
 from nle.nethack import Command, CompassDirection
 from minihack.envs import register
 import gymnasium as gym
+import random
 
 
 MOVE_AND_KICK_ACTIONS = tuple(
@@ -130,7 +131,6 @@ class MiniGridHack(MiniHackNavigation):
         return super().seed(core, disp, reseed)
 
     def reset(self, wizkit_items=None, **kwargs):
-        kwargs = dict()
         des_file = self.get_env_desc()
         self.update(des_file)
         if self._level_seeds is not None:
